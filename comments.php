@@ -52,6 +52,7 @@ if (isset($_GET["key"]) and isset($_GET["test"])) {
         echo '<li class="list-group-item d-flex justify-content-between align-items-center">Comment: '.$cm.'</li>';
         echo '<li class="list-group-item text-center">
         <a class="btn btn-primary" href="/editcominfo.php?key='.$id.'&test='.$test.'&com='.$c.'" role="button">Edit comment</a>
+        <a class="btn btn-danger" href="/delcom.php?key='.$id.'&test='.$test.'&com='.$c.'" role="button">Delete comment</a>
         </li>';
 
         echo '</ul>';

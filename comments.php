@@ -46,9 +46,9 @@ if (isset($_GET["key"]) and isset($_GET["test"])) {
         echo '<ul class="list-group d-grid col-6 mx-auto">';
         $c =   str_replace("$me:COM:$id:$test:" , "", $i);
         echo '<li class="list-group-item d-flex justify-content-between align-items-center">Comment ID: '. $t.'</li>';
-        $tc = $redis->hGet($k,'time');
+        $tc = $redis->hGet($i,'time');
         echo '<li class="list-group-item d-flex justify-content-between align-items-center">Date/time of creation: '. $tc.'</li>';
-        $cm = $redis->hGet($k,'comment');
+        $cm = $redis->hGet($i,'comment');
         echo '<li class="list-group-item d-flex justify-content-between align-items-center">Comment: '.$cm.'</li>';
         echo '<li class="list-group-item text-center">
         <a class="btn btn-primary" href="/editcominfo.php?key='.$id.'&test='.$test.'&com='.$c.'" role="button">Edit comment</a>

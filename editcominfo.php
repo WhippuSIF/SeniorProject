@@ -30,7 +30,7 @@ if (isset($_GET["key"]) and isset ($_GET["test"]) and isset ($_GET["com"])) {
     $k = "$me:COM:$id:$t:$c";
     $desc = $redis->hGet($k,'comment');
     $redis->close();
-    echo '<h1 class="text-center">Editing description of blood test #'.$desc.'</h1>';
+    echo '<h1 class="text-center">Editing comment #'.$c.' of blood test #'.$id.'</h1>';
     echo '<br>';
     echo ' <form class="d-grid gap-2 col-6 mx-auto" method="post" action="" >
         Description: <input type="text" class="form-control" name="desc" value="'.$desc.'" /><br/>

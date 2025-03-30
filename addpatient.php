@@ -24,7 +24,8 @@ if (isset($_POST['fnm']) and isset($_POST['lnm']) and isset($_POST['country']) a
         'country' => $country,
         'last_bloodtest' => 0
     );
-    $patientid = $redis->incr("$me:last_patientid");
+    $patientid = rand(10000000,19999999);
+    $redis->incr("$me:last_patientid");
     $key = "$me:PAT:$patientid";
     $redis->hMset($key, $dm);
     $redis->close();

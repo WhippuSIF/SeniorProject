@@ -23,9 +23,10 @@ if (isset($_POST["message"])  and isset($_POST["submit"]) and isset ($_POST["com
         'comment' => $desc,
         'time' => $time->format(DateTime::ATOM)   # ISO8601 format
     );
-    $last_comment = $redis->hIncrBy("$me:BLT:$id:$test",
+    $com_id = rand(10000000,19999999);
+    $redis->hIncrBy("$me:BLT:$id:$test",
         'last_comment', 1);
-    $key = "$me:COM:$id:$test:$last_comment";
+    $key = "$me:COM:$id:$test:$com_id";
     $redis->hMset($key, $com);
     echo "Added!";
     echo "<br>";

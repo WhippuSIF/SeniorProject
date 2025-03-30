@@ -22,39 +22,22 @@ if (isset ($_GET["key"])) {
     $k = "$me:PAT:$id";
     $fn = $redis->hGet($k,'firstName');
     echo '<li class="list-group-item text-center">First name: '. $fn.'</li>';
-    //echo "Last name: $fn";
-    //echo "<br>";
     $ln = $redis->hGet($k,'lastName');
     echo '<li class="list-group-item text-center">Last name: '. $ln.'</li>';
-    //echo "Last name: $ln";
-    //echo "<br>";
     $c = $redis->hGet($k,'country');
     echo '<li class="list-group-item text-center">Country: '. $c.'</li>';
-    //echo "Country: $c";
-    //echo "<br>";
     $dob = $redis->hGet($k,'birthdtc');
     echo '<li class="list-group-item text-center">Date of birth: '. $dob.'</li>';
-    //echo "Date of birth: $dob";
-    //echo "<br>";
     $lbt = $redis->hGet($k,'last_bloodtest');
     echo '<li class="list-group-item text-center">No. of blood tests taken: '. $lbt.'</li>';
-    //echo "No. of blood tests taken: $lbt";
-    //echo "<br>";
     echo "</ul>";
-
     echo "<br>";
-
     echo '<div class="d-grid gap-2 col-6 mx-auto">';
     echo '<a class="btn btn-primary" href="/bloodtests.php?key='.$id.'" role="button">Blood Tests</a>';
     echo '<a class="btn btn-primary" href="/editpatinfo.php?key='.$id.'" role="button">Edit patient information</a>';
+    echo '<a class="btn btn-danger" href="/delpat.php?key='.$id.'" role="button">Delete patient</a>';
     echo '<a class="btn btn-primary" href="/" role="button">Home</a>';
     echo '</div>';
-    //$hashinfo= $redis->hGetAll($k);
-    //foreach ($hashinfo as $h){
-    //    echo $h;
-    //    echo "<br>";
-//
-    //}
 }
 $redis->close();
 

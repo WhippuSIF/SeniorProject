@@ -23,9 +23,10 @@ if (isset($_POST["message"])  and isset($_POST["submit"]) and isset ($_POST["blt
         'desc' => $desc,
         'time' => $time->format(DateTime::ATOM)   # ISO8601 format
     );
-    $last_bloodtest = $redis->hIncrBy("$me:PAT:$id",
+    $blt_id = rand(10000000,19999999);
+    $redis->hIncrBy("$me:PAT:$id",
         'last_bloodtest', 1);
-    $key = "$me:BLT:$id:$last_bloodtest";
+    $key = "$me:BLT:$id:$blt_id";
     $redis->hMset($key, $blt);
     echo "Added!";
     echo "<br>";
@@ -53,7 +54,8 @@ if (isset($_GET["key"])) {
         echo '<li class="list-group-item text-center">Description: '. $ds.'</li>';
         echo '<li class="list-group-item text-center">
         <a class="btn btn-primary" href="/comments.php?key='.$id.'&test='.$t.'" role="button">Comments</a>
-        <a class="btn btn-primary" href="/editbltinfo.php?key='.$id.'&test='.$t.'" role="button">Edit blood test</a>
+        <a class="btn btn-primary" href="/editbltinfo.php?key='.$id.'&test='.$t.'" role="button">Edit blood test entry</a>
+        <a class="btn btn-danger" href="/delblt.php?key='.$id.'&test='.$t.'" role="button">Delete blood test entry</a>
         </li>';
 
         echo '</ul>';

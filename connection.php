@@ -6,7 +6,7 @@ error_reporting( E_ALL );
 $me = 'wgbp3';			// Redis username on EC2 instance
 
 
-//connect to redis server on render
+//connect to redis server on the same EC2 instance
 $redis = new Redis();
 $redis->connect( 'localhost' );
 echo "<!-- connected. --> \n";

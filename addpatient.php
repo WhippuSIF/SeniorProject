@@ -33,7 +33,7 @@ if (isset($_POST['fnm']) and isset($_POST['lnm']) and isset($_POST['country']) a
     echo "<meta http-equiv='refresh' content='3; URL=/'>";
 }
 
-echo '<h1 class="text-center">Add Comment</h1>';
+echo '<h1 class="text-center">Add Patient</h1>';
 echo '<br>';
 echo ' <form class="d-grid gap-2 col-6 mx-auto" method="post" action="" >
         First Name: <input type="text" class="form-control" name="fnm" /><br/>

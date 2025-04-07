@@ -67,11 +67,12 @@ if (isset($_GET["key"])) {
     echo ' <form class="d-grid gap-2 col-6 mx-auto" method="post" action="" >
         Description: <input type="text" class="form-control" name="message" /> <br/><br/>
         <input type="submit" class="btn btn-primary" value="Submit" name="submit" />
-        <input type="hidden" name="bltkey"  value="'.$_GET["key"].'">
+        <input type="hidden" name="bltkey"  value="'.$id.'">
     </form>';
     echo "<br>";
     echo '<div class="d-grid gap-2 col-6 mx-auto">';
-    echo '<a class="btn btn-primary" href="/patient.php?key='. $_GET["key"].'" role="button">Back</a>';
+    echo '<a class="btn btn-primary" href="/blt2csv.php?key='.$id.'" role="button">Export to CSV</a>';
+    echo '<a class="btn btn-primary" href="/patient.php?key='.$id.'" role="button">Back</a>';
     echo '<a class="btn btn-primary" href="/" role="button">Home</a>';
     echo '</div>';
 

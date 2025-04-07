@@ -56,6 +56,7 @@ if (isset($_GET["key"]) and isset($_GET["test"])) {
         <a class="btn btn-danger" href="/delcom.php?key='.$id.'&test='.$test.'&com='.$c.'" role="button">Delete comment</a>
         </li>';
 
+
         echo '</ul>';
         echo "<br>";
 
@@ -66,13 +67,14 @@ if (isset($_GET["key"]) and isset($_GET["test"])) {
     echo ' <form class="d-grid gap-2 col-6 mx-auto" method="post" action="" >
         Description: <input type="text" class="form-control" name="message" /> <br/><br/>
         <input type="submit" class="btn btn-primary" value="Submit" name="submit" />
-        <input type="hidden" name="comkey"  value="'.$_GET["key"].'">
-        <input type="hidden" name="comtest"  value="'.$_GET["test"].'">
+        <input type="hidden" name="comkey"  value="'.$id.'">
+        <input type="hidden" name="comtest"  value="'.$id.'">
     </form>';
     echo "<br>";
     echo '<div class="d-grid gap-2 col-6 mx-auto">';
-    echo '<a class="btn btn-primary" href="/bloodtests.php?key='. $_GET["key"].'" role="button">Back</a>';
-    echo '<a class="btn btn-primary" href="/patient.php?key='. $_GET["key"].'" role="button">Patient info</a>';
+    echo '<a class="btn btn-primary" href="/com2csv.php?key='.$id.'&test='.$test.'" role="button">Export as CSV</a>';
+    echo '<a class="btn btn-primary" href="/bloodtests.php?key='.$id.'" role="button">Back</a>';
+    echo '<a class="btn btn-primary" href="/patient.php?key='.$id.'" role="button">Patient info</a>';
     echo '<a class="btn btn-primary" href="/" role="button">Home</a>';
     echo '</div>';
 } else {

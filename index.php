@@ -30,6 +30,7 @@ echo '<div class="d-grid gap-2 col-6 mx-auto">';
 echo '<a class="btn btn-primary" href="/addpatient.php" role="button">Add patient</a>';
 echo '<a class="btn btn-primary" href="/pat2csv.php" role="button">Export all patient info to CSV</a>';
 echo '<a class="btn btn-primary" href="/blt2csv_all.php" role="button">Export all blood test info to CSV</a>';
+echo '<a class="btn btn-primary" href="/com2csv_all.php" role="button">Export all comments to CSV</a>';
 echo '</div>';
 
 ?>

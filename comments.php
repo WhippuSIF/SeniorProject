@@ -68,7 +68,7 @@ if (isset($_GET["key"]) and isset($_GET["test"])) {
         Description: <input type="text" class="form-control" name="message" /> <br/><br/>
         <input type="submit" class="btn btn-primary" value="Submit" name="submit" />
         <input type="hidden" name="comkey"  value="'.$id.'">
-        <input type="hidden" name="comtest"  value="'.$id.'">
+        <input type="hidden" name="comtest"  value="'.$test.'">
     </form>';
     echo "<br>";
     echo '<div class="d-grid gap-2 col-6 mx-auto">';

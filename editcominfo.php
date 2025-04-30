@@ -10,6 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
+<?php include 'partials/navbar.php'; ?>
+<br>
 <?php
 require 'connection.php';
 if (isset($_POST['desc']) and isset($_POST['submit']) and isset($_POST['patkey']) and isset($_POST['pattest']) and isset($_POST['patcom'])) {
@@ -20,7 +22,7 @@ if (isset($_POST['desc']) and isset($_POST['submit']) and isset($_POST['patkey']
     $key = "$me:COM:$id:$ts:$cm";
     $redis->hSet($key, 'comment',$d);
     $redis->close();
-    echo "Edited!";
+    echo "<div class='alert alert-success d-grid col-6 mx-auto' role='alert'>Edited!</div>";
     echo '<meta http-equiv="refresh" content="3;URL=/comments.php?key='.$id.'&test='.$ts.'">';
 }
 if (isset($_GET["key"]) and isset ($_GET["test"]) and isset ($_GET["com"])) {

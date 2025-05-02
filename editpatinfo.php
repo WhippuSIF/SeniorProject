@@ -14,26 +14,42 @@
 <br>
 <?php
 require 'connection.php';
+// Get all info from POST requests
 if (isset($_POST['fnm']) and isset($_POST['lnm']) and isset($_POST['country']) and isset($_POST['submit']) and isset($_POST['patkey'])) {
+    // First and last name
     $fname = $_POST['fnm'];
     $lname = $_POST['lnm'];
+    // Country
     $country = $_POST['country'];
+    // Patient ID
     $id = $_POST['patkey'];
+    // Path in keystore
     $key = "$me:PAT:$id";
+    //Make the changes
     $redis->hSet($key, 'firstName',$fname);
     $redis->hSet($key, 'lastName',$lname);
     $redis->hSet($key, 'country',$country);
+    // Close PHP Redis
     $redis->close();
+    // Print "Edited!" message
     echo "<div class='alert alert-success d-grid col-6 mx-auto' role='alert'>Edited!</div>";
+    // Redirect to patient page
     echo '<meta http-equiv="refresh" content="3;URL=/patient.php?key='.$id.'">';
 }
+//Get patient ID
 if (isset($_GET["key"])) {
+    // Patient ID
     $id = $_GET["key"];
+    // Path in keystore
     $k = "$me:PAT:$id";
+    // First and last name
     $fn = $redis->hGet($k,'firstName');
     $ln = $redis->hGet($k,'lastName');
+    // Country
     $country = $redis->hGet($k,'country');
+    // Close PHP Redis
     $redis->close();
+    // Print editing form
     echo '<h1 class="text-center">Editing patient information of: '.$fn.' '.$ln.'</h1>';
     echo '<br>';
     echo ' <form class="d-grid gap-2 col-6 mx-auto" method="post" action="" >

@@ -14,11 +14,14 @@
 <br>
 <?php
 require 'connection.php';
+// Get info from POST requests
 if (isset($_POST['fnm']) and isset($_POST['lnm']) and isset($_POST['country']) and isset($_POST['submit'])) {
+    // First/last name
     $fname = $_POST['fnm'];
     $lname = $_POST['lnm'];
+    // Country
     $country = $_POST['country'];
-
+    // make array
     $dm = array(
         'firstName' => $fname,
         'lastName' => $lname,
@@ -26,12 +29,19 @@ if (isset($_POST['fnm']) and isset($_POST['lnm']) and isset($_POST['country']) a
         'country' => $country,
         'last_bloodtest' => 0
     );
+    // assign random ID number
     $patientid = rand(10000000,19999999);
+    // increase number of patients by 1
     $redis->incr("$me:last_patientid");
+    // Path in keystore
     $key = "$me:PAT:$patientid";
+    // add array as a patient
     $redis->hMset($key, $dm);
+    // Close PHP Redis
     $redis->close();
+    // Print "Added!" message
     echo "<div class='alert alert-success d-grid col-6 mx-auto' role='alert'>Added!</div>";
+    // Redirect to index page
     echo "<meta http-equiv='refresh' content='3; URL=/'>";
 }
 

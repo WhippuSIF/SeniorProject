@@ -14,14 +14,23 @@
 <br>
 <?php
 require 'connection.php';
+// Get info from GET requests
 if (isset($_GET["key"]) and isset ($_GET["test"]) and isset ($_GET["com"])) {
+    // Patient ID
     $id = $_GET["key"];
+    // Blood Test ID
     $test = $_GET["test"];
+    // Comment ID
     $com = $_GET["com"];
+    // Delete the comment
     $redis->del("$me:COM:$id:$test:$com");
+    // Decrease number of comments by 1
     $redis->hIncrBy("$me:BLT:$id:$test", 'last_comment', -1);
+    // Close PHP Redis
     $redis->close();
+    // Print "Deleted!" message
     echo "<div class='alert alert-success d-grid col-6 mx-auto' role='alert'>Deleted!</div>";
+    // Redirect to comments page
     echo '<meta http-equiv="refresh" content="3;URL=/comments.php?key='.$id.'&test='.$test.'">';
 }
 ?>

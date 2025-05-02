@@ -14,14 +14,23 @@
 <br>
 <?php
 require 'connection.php';
+// Get info from GET requests
 if (isset($_GET["key"]) and isset ($_GET["test"])) {
+    // Patient ID
     $id = $_GET["key"];
+    // Blood Test ID
     $test = $_GET["test"];
+    // Delete the blood test entry
     $redis->del("$me:BLT:$id:$test");
+    // Delete all comments
     $redis->del("$me:COM:$id:$test:*");
+    // Decrease number of blood tests by 1
     $redis->hIncrBy("$me:PAT:$id", 'last_bloodtest', -1);
+    // Close PHP Redis
     $redis->close();
+    // Print "Deleted!" message
     echo "<div class='alert alert-success d-grid col-6 mx-auto' role='alert'>Deleted!</div>";
+    // Redirect to blood test page
     echo '<meta http-equiv="refresh" content="3;URL=/bloodtests.php?key='.$id.'">';
 }
 ?>

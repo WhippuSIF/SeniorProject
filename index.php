@@ -16,17 +16,25 @@
 <br>
 <?php
 require 'connection.php';
+//Get keys for patients
 $key = $redis->keys("$me:PAT:*");
+//Start list
 echo '<div class="list-group d-grid col-6 mx-auto">';
+//loop to print out every patient
 foreach($key as $k) {
+    //leave only the ID number
     $t =  str_replace("$me:PAT:" , "", $k);
+    // First and  last name
     $fn = $redis->hGet($k,'firstName');
     $ln = $redis->hGet($k,'lastName');
+    // List patient
     echo '<a href="/patient.php?key='. $t.'" class="list-group-item list-group-item-action text-center">'. $fn .' '.$ln.'</a>';
 }
 echo '</div>';
+//Close PHP Redis
 $redis->close();
 echo '<br>';
+//Export functions
 echo '<div class="d-grid gap-2 col-6 mx-auto">';
 echo '<a class="btn btn-primary" href="/addpatient.php" role="button">Add patient</a>';
 echo '<a class="btn btn-primary" href="/pat2csv.php" role="button">Export all patient info to CSV</a>';

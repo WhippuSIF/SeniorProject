@@ -15,13 +15,21 @@
 <?php
 require 'connection.php';
 if (isset($_GET["key"])) {
+    // Patient ID
     $id = $_GET["key"];
+    // Delete patient
     $redis->del("$me:PAT:$id");
+    // Delete all blood tests
     $redis->del("$me:BLT:$id:*");
+    // Delete all comments
     $redis->del("$me:COM:$id:*:*");
+    // Decrease number of patients by 1.
     $redis->incr("$me:last_patientid",-1);
+    //close PHP Redis
     $redis->close();
+    // Print "Deleted!" message
     echo "<div class='alert alert-success d-grid col-6 mx-auto' role='alert'>Deleted!</div>";
+    // Redirect to comments page
     echo '<meta http-equiv="refresh" content="3;URL=/">';
 }
 ?>
